@@ -1,0 +1,50 @@
+#image {
+width : 160px;
+height : 160px%;
+margin-left : 66px;
+margin-top : 20%;}
+
+#titre1 {
+color:#003E69;
+font-family :"ghotic";
+font-size:40px}
+
+#point {color:#003E69}
+
+@font-face {
+font-family : "ghotic";
+src : url('../font/Century-Gothic_9791.ttf');}
+
+#thelinux1 {
+color: white;
+font-size : 30;
+margin-left: 10px}
+
+#thelinux {
+background-color:#000000;
+padding-bottom : 10px;
+padding-top : 10px;
+border-style: solid;
+border-bottom-width : 5px;
+border-top-width : 0px;
+border-left-width : 0px;
+border-right-width : 0px;
+border-bottom-color : #000000;}
+
+#kernel {
+background-color:grey;
+color: white;
+font-family : ghotic}
+
+
+
+#logo {display : inline-block}
+#linux {
+display : inline-block;
+border-bottom-width : 500px;}
+
+#global {margin-left : 68%}
+
+#bas {margin-left :80%}
+#lien{margin-left :60px}
+
