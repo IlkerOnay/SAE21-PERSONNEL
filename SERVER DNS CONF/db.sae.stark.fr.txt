@@ -1,0 +1,14 @@
+; sae.stark.fr
+$TTL    604800
+@       IN      SOA     sae.stark.fr. root.sae.stark.fr. (
+                        2               ; Serial
+                        604800          ; Refresh
+                        86400           ; Retry
+                        2419200         ; Expire
+                        604800 )        ; Negative Cache TTL
+;
+$ORIGIN sae.stark.fr.
+@       IN      NS      sae.stark.fr.
+@       IN      A       192.168.2.248
+www     IN      A       192.168.2.248
+

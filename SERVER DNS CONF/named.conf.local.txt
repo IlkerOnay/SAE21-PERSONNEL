@@ -1,0 +1,6 @@
+zone "sae.stark.fr" IN {
+type master;
+file "/etc/bind/db.sae.stark.fr";
+allow-update { none; };
+allow-query{any;};
+};

@@ -1,0 +1,110 @@
+
+
+# jan/02/1970 00:41:00 by RouterOS 6.48
+
+# software id = 7ALU-NXFS
+
+#
+
+# model = RB750Gr3
+
+# serial number = CC210EDE046A
+
+/interface bridge
+
+add admin-mac=2C:C8:1B:06:B5:3F auto-mac=no comment=defconf name=bridge
+
+/interface list
+
+add comment=defconf name=WAN
+
+add comment=defconf name=LAN
+
+/interface wireless security-profiles
+
+set [ find default=yes ] supplicant-identity=MikroTik
+
+/ip hotspot profile
+
+set [ find default=yes ] html-directory=hotspot
+
+/ip pool
+
+add name=dhcp ranges=192.168.2.10-192.168.2.250
+
+/ip dhcp-server
+
+add address-pool=dhcp disabled=no interface=bridge name=defconf
+
+/interface bridge port
+
+add bridge=bridge comment=defconf interface=ether2
+
+add bridge=bridge comment=defconf interface=ether3
+
+add bridge=bridge comment=defconf interface=ether4
+
+add bridge=bridge comment=defconf interface=ether5
+
+/ip neighbor discovery-settings
+
+set discover-interface-list=LAN
+
+/interface list member
+
+add comment=defconf interface=bridge list=LAN
+
+add comment=defconf interface=ether1 list=WAN
+
+/ip address
+
+add address=192.168.2.253/24 comment=defconf interface=bridge network=192.168.2.0
+
+/ip dhcp-client
+
+add comment=defconf disabled=no interface=ether1
+
+/ip dhcp-server network
+
+add address=192.168.2.0/24 comment=defconf gateway=192.168.2.253 netmask=24
+
+/ip dns
+
+set allow-remote-requests=yes
+
+/ip dns static
+
+add address=192.168.2.253 comment=defconf name=router.lan
+
+/ip firewall filter
+
+add action=accept chain=forward connection-state=established
+
+add action=accept chain=forward connection-state=new dst-port=80 protocol=tcp
+
+add action=accept chain=forward connection-state=new dst-port=443 protocol=tcp
+
+add action=accept chain=forward connection-state=new port=1194 protocol=udp
+
+add action=accept chain=forward connection-state=established,new protocol=icmp
+
+add action=accept chain=forward connection-state=new port=53 protocol=udp
+
+add action=drop chain=forward connection-state=new
+
+/ip firewall nat
+
+add action=masquerade chain=srcnat comment="defconf: masquerade" ipsec-policy=out,none out-interface-list=WAN
+
+/ip route
+
+add disabled=yes distance=1 gateway=10.213.255.254
+
+/tool mac-server
+
+set allowed-interface-list=LAN
+
+/tool mac-server mac-winbox
+
+set allowed-interface-list=LAN
+
